@@ -1,6 +1,6 @@
 # Helix Mono
 
-![Helix Mono specimen: cover and specifications](images/specimen.png)
+![Helix Mono in its six weights, ExtraLight to Bold](images/banner.png)
 
 A monospace typeface for code, data and interfaces, by [HelixDB](https://helix-db.com).
 
