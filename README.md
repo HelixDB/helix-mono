@@ -1,5 +1,7 @@
 # Helix Mono
 
+![Helix Mono specimen: cover and specifications](images/specimen.png)
+
 A monospace typeface for code, data and interfaces, by [HelixDB](https://helix-db.com).
 
 Helix Mono is JetBrains Mono NL 2.304 with HelixDB's own glyph edits: rounded V notches, a square-ended r, a mirrored g hook, a symmetric M, a Q whose tail clears its counter, a lighter & and @, and more.
