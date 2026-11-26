@@ -17,7 +17,7 @@ WEIGHTS = ["ExtraLight", "Light", "Regular", "Medium", "SemiBold", "Bold"]
 SOURCES = {"ExtraLight": "Thin", "Light": "ExtraLight", "Regular": "Light",
            "Medium": "Medium", "SemiBold": "SemiBold", "Bold": "ExtraBold"}
 WEIGHT_CLASS = {"ExtraLight": 200, "Light": 300, "Regular": 400, "Medium": 500, "SemiBold": 600, "Bold": 700}
-VERSION = "0.46"
+VERSION = "1.0"
 CORNER_K = 0.20  # v0.2: corners slightly more angular (0 = JetBrains original)
 EDITS = {}  # filled in as per-letter changes come in
 

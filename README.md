@@ -14,7 +14,7 @@ Six weights, each with an italic: ExtraLight 200, Light 300, Regular 400, Medium
 
 ## Install
 
-**[Download HelixMono-0.46.zip](https://github.com/HelixDB/helix-mono/releases/latest/download/HelixMono-0.46.zip)** (TTF, WOFF2 and licence).
+**[Download HelixMono-1.0.zip](https://github.com/HelixDB/helix-mono/releases/latest/download/HelixMono-1.0.zip)** (TTF, WOFF2 and licence).
 
 
 - **Desktop:** install the files in [`fonts/ttf`](fonts/ttf), then pick "Helix Mono" in your editor or terminal.
