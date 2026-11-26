@@ -19,234 +19,185 @@
 @font-face{font-family:"Helix Mono";src:url(fonts/woff2/HelixMono-Bold.woff2) format("woff2");font-weight:700;font-display:block}
 @font-face{font-family:"Helix Mono";src:url(fonts/woff2/HelixMono-BoldItalic.woff2) format("woff2");font-weight:700;font-style:italic;font-display:block}
 
-:root{--bg:#f2f0eb;--ink:#000;--grey:#8c8a85}
-*{box-sizing:border-box;margin:0}
+:root{--bg:#f2f0eb;--ink:#000;--grey:#77756f}
+*{box-sizing:border-box;margin:0;padding:0}
 html{-webkit-text-size-adjust:100%}
-body{background:var(--bg);color:var(--ink);font-family:"Helix Mono",ui-monospace,Menlo,monospace;font-weight:400;-webkit-font-smoothing:antialiased;overflow-x:hidden}
-a{color:inherit;text-decoration:none}
-button{font:inherit;color:inherit;background:none;border:0;cursor:pointer}
+body{background:var(--bg);color:var(--ink);font:400 13px/1.55 "Helix Mono",ui-monospace,Menlo,monospace;-webkit-font-smoothing:antialiased}
+a{color:inherit}
+.doc{max-width:980px;margin:0 auto;padding:0 20px 40px}
 
-/* Captions: small, centred, under every specimen */
-.cap{display:block;text-align:center;font-size:11px;line-height:1.45}
-.pill{display:inline-block;margin-top:14px;padding:3px 7px;border-radius:4px;background:var(--ink);color:var(--bg);font-size:10.5px}
+/* Running header, like the top of every page in a printed guide */
+.run{display:flex;justify-content:space-between;gap:16px;padding:14px 0 10px;border-bottom:1px solid var(--ink);font-size:11px;text-transform:uppercase;letter-spacing:.04em}
 
-/* A specimen panel, framed by crop marks at its corners and a tick at the middle of the top and bottom */
-.panel{position:relative;padding:72px 24px 40px}
-.panel::before,.panel::after,.panel>.mk::before,.panel>.mk::after{content:"";position:absolute;width:12px;height:12px;border:0 solid var(--ink)}
-.panel::before{left:12px;top:12px;border-left-width:1px;border-top-width:1px}
-.panel::after{right:12px;top:12px;border-right-width:1px;border-top-width:1px}
-.panel>.mk::before{left:12px;bottom:12px;border-left-width:1px;border-bottom-width:1px}
-.panel>.mk::after{right:12px;bottom:12px;border-right-width:1px;border-bottom-width:1px}
-.panel>.mk{position:absolute;inset:0;pointer-events:none}
-.panel>.mk i{position:absolute;left:50%;width:12px;height:1px;margin-left:-6px;background:var(--ink)}
-.panel>.mk i:first-child{top:12px}.panel>.mk i:last-child{bottom:12px}
+/* Cover */
+.cover{padding:96px 0 72px;border-bottom:1px solid var(--ink)}
+.cover .kind{font-size:11px;text-transform:uppercase;letter-spacing:.04em}
+.cover h1{font-size:clamp(56px,13vw,132px);font-weight:600;line-height:.9;letter-spacing:-.06em;margin:18px 0 28px}
+.cover dl{display:grid;grid-template-columns:auto 1fr;gap:2px 24px;font-size:12px}
+.cover dt{color:var(--grey)}
 
-/* Section heads: a full rule, a title, a small note */
-.head{padding:0 12px}
-.head hr{border:0;border-top:1.5px solid var(--ink)}
-.head h2{font-size:26px;font-weight:400;letter-spacing:-.03em;margin-top:14px}
-.head p{font-size:11px;margin-top:6px}
+/* Numbered sections */
+section{padding:44px 0;border-bottom:1px solid var(--ink)}
+h2{display:flex;gap:24px;font-size:13px;font-weight:600;text-transform:uppercase;letter-spacing:.04em;margin-bottom:28px}
+h2 span{min-width:40px}
+.body{margin-left:64px}
+.note{font-size:11px;color:var(--grey);margin-top:16px}
 
-/* ---------- Hero ---------- */
-.hero{min-height:100vh;display:flex;flex-direction:column;padding:12px 0 18px}
-.hero .who{padding:0 12px;font-size:clamp(28px,3.2vw,46px);line-height:1.05;letter-spacing:-.04em;color:#6f6d68}
-.hero .who a:hover{color:var(--ink)}
-.hero .big{flex:1;display:flex;flex-direction:column;justify-content:center;align-items:flex-start;padding:0 12px;font-weight:700;line-height:.82;letter-spacing:-.07em;white-space:nowrap}
-.hero .big span{display:block;font-size:min(29vw,46vh)}
-.hero .big span:first-child{font-weight:300;margin-bottom:.04em}
-.hero .cap{margin-top:18px}
+/* Specification table with dotted leaders */
+.spec{list-style:none;max-width:560px}
+.spec li{display:flex;align-items:baseline;gap:8px}
+.spec li::after{content:"";order:1;flex:1;border-bottom:1px dotted var(--ink)}
+.spec b{order:2;font-weight:400}
 
-/* ---------- Styles ---------- */
-.styles{text-align:center;font-size:clamp(20px,2.3vw,32px);line-height:1.18;letter-spacing:-.03em;padding:60px 0 64px}
-.toggle{display:flex;justify-content:center;gap:4px;margin-bottom:56px}
-.toggle button,.tester .row button{font-size:10.5px;padding:4px 8px;border-radius:4px;box-shadow:inset 0 0 0 1px var(--ink)}
-.toggle button[aria-pressed=true],.tester .row button[aria-pressed=true]{background:var(--ink);color:var(--bg)}
+/* Parts list */
+.parts{display:grid;grid-template-columns:repeat(2,1fr);border-top:1px solid var(--ink)}
+.parts div{display:grid;grid-template-columns:72px 1fr auto;align-items:baseline;gap:12px;padding:9px 0;border-bottom:1px solid var(--ink)}
+.parts div:nth-child(odd){padding-right:24px}
+.parts div:nth-child(even){padding-left:24px;border-left:1px solid var(--ink)}
+.parts .no{color:var(--grey);font-size:11px}
+.parts .aa{font-size:22px;line-height:1}
 
-/* ---------- Statement ---------- */
-.state{text-align:center;font-size:clamp(34px,5.4vw,84px);line-height:1.02;letter-spacing:-.055em;font-weight:600;max-width:1300px;margin:0 auto}
+/* Figures */
+figure svg{display:block;width:100%;height:auto;overflow:visible}
+figcaption{font-size:11px;margin-top:14px}
+.chars{font-size:clamp(20px,3.4vw,34px);line-height:1.25;letter-spacing:-.02em;word-break:break-all}
 
-/* ---------- Text columns ---------- */
-.cols{display:grid;grid-template-columns:1fr 1fr;gap:48px;font-size:15px;line-height:1.38;letter-spacing:-.01em;max-width:1240px;margin:0 auto}
+/* Instructions */
+ol{list-style:none;counter-reset:s;max-width:620px}
+ol li{counter-increment:s;display:grid;grid-template-columns:40px 1fr;padding:6px 0}
+ol li::before{content:counter(s) ".";}
+code{font:inherit;background:#e4e1da;padding:0 4px}
+pre{font:inherit;font-size:12px;border:1px solid var(--ink);padding:16px;margin-top:20px;max-width:620px;overflow-x:auto}
 
-/* ---------- Alphabet ---------- */
-.abc{text-align:center;font-size:clamp(40px,7.6vw,118px);line-height:1;letter-spacing:-.05em;font-weight:600;word-break:break-all}
+.foot{display:flex;justify-content:space-between;gap:16px;padding-top:12px;font-size:11px;text-transform:uppercase;letter-spacing:.04em}
 
-/* ---------- Giant glyphs ---------- */
-.giant{display:flex;justify-content:center;font-size:min(40vw,72vh);line-height:1;letter-spacing:-.06em;font-weight:500;white-space:nowrap;padding-bottom:.12em;cursor:pointer;user-select:none}
-
-/* ---------- Code ---------- */
-pre{font:inherit;font-size:clamp(13px,1.35vw,18px);line-height:1.55;letter-spacing:-.01em;max-width:960px;margin:0 auto;white-space:pre;overflow-x:auto}
-pre .c{color:var(--grey);font-style:italic}
-
-/* ---------- Tester ---------- */
-.tester{max-width:1240px;margin:0 auto}
-.tester .row{display:flex;justify-content:center;flex-wrap:wrap;gap:4px;margin-bottom:28px}
-#type{display:block;width:100%;border:0;outline:0;resize:none;background:none;text-align:center;font:inherit;font-size:clamp(40px,7vw,104px);line-height:1.02;letter-spacing:-.05em;field-sizing:content;min-height:1.1em}
-
-/* ---------- End ---------- */
-.end{display:grid;grid-template-columns:1fr 1fr;align-items:end;gap:24px;padding:96px 12px 18px}
-.end h2{font-size:clamp(56px,10vw,160px);font-weight:600;letter-spacing:-.07em;line-height:.85}
-.end nav{display:flex;flex-direction:column;align-items:flex-end;gap:2px;font-size:clamp(22px,2.6vw,38px);letter-spacing:-.04em;line-height:1.1}
-.end nav a:hover{color:#6f6d68}
-.foot{display:flex;justify-content:space-between;gap:12px;flex-wrap:wrap;padding:20px 12px 16px;font-size:11px}
-
-@media (max-width:760px){
-  .cols,.end{grid-template-columns:1fr}
-  .end nav{align-items:flex-start}
-  .panel{padding:56px 16px 36px}
+@media (max-width:640px){
+  .body{margin-left:0}
+  h2{gap:12px}
+  .parts{grid-template-columns:1fr}
+  .parts div:nth-child(n){padding:9px 0;border-left:0}
+  .run span:nth-child(2){display:none}
 }
 </style>
 </head>
 <body>
+<div class="doc">
 
-<header class="hero">
-  <p class="who"><a href="https://helix-db.com">HelixDB</a><br>Helix Mono</p>
-  <div class="big" aria-label="Helix Mono">
-    <span>Helix</span>
-    <span>Mono</span>
-  </div>
-  <span class="cap">Helix Mono: 1 Family, 6 Weights, 12 Styles<br>ExtraLight, Light, Regular, Medium, SemiBold, Bold</span>
-</header>
+<header class="run"><span>HelixDB · Helix Mono</span><span>User guide</span><span>Rev. 0.46</span></header>
+
+<div class="cover">
+  <p class="kind">Monospace typeface · Model HM‑1</p>
+  <h1>Helix<br>Mono</h1>
+  <dl>
+    <dt>Document</dt><dd>User guide and specification</dd>
+    <dt>Revision</dt><dd>0.46</dd>
+    <dt>Manufacturer</dt><dd>HelixDB</dd>
+  </dl>
+</div>
 
 <section>
-  <div class="head"><hr><h2>Styles</h2><p>Helix Mono: Roman and Italic</p></div>
-  <div class="panel"><span class="mk"><i></i><i></i></span>
-    <div class="toggle" role="group" aria-label="Style">
-      <button data-st="normal" aria-pressed="true">Roman</button><button data-st="italic">Italic</button>
+  <h2><span>1.0</span>Specifications</h2>
+  <div class="body">
+    <ul class="spec">
+      <li>Family <b>Helix Mono</b></li>
+      <li>Classification <b>Monospace</b></li>
+      <li>Weights <b>6 (200–700)</b></li>
+      <li>Styles <b>12, roman and italic</b></li>
+      <li>Units per em <b>1000</b></li>
+      <li>Advance width <b>600</b></li>
+      <li>Formats <b>WOFF2, TTF</b></li>
+      <li>Based on <b>JetBrains Mono NL 2.304</b></li>
+      <li>Licence <b>SIL Open Font License 1.1</b></li>
+    </ul>
+  </div>
+</section>
+
+<section>
+  <h2><span>2.0</span>Contents of package</h2>
+  <div class="body">
+    <div class="parts">
+      <div><span class="no">HM‑200</span>ExtraLight<span class="aa" style="font-weight:200">Aa</span></div>
+      <div><span class="no">HM‑200i</span>ExtraLight Italic<span class="aa" style="font-weight:200;font-style:italic">Aa</span></div>
+      <div><span class="no">HM‑300</span>Light<span class="aa" style="font-weight:300">Aa</span></div>
+      <div><span class="no">HM‑300i</span>Light Italic<span class="aa" style="font-weight:300;font-style:italic">Aa</span></div>
+      <div><span class="no">HM‑400</span>Regular<span class="aa" style="font-weight:400">Aa</span></div>
+      <div><span class="no">HM‑400i</span>Italic<span class="aa" style="font-weight:400;font-style:italic">Aa</span></div>
+      <div><span class="no">HM‑500</span>Medium<span class="aa" style="font-weight:500">Aa</span></div>
+      <div><span class="no">HM‑500i</span>Medium Italic<span class="aa" style="font-weight:500;font-style:italic">Aa</span></div>
+      <div><span class="no">HM‑600</span>SemiBold<span class="aa" style="font-weight:600">Aa</span></div>
+      <div><span class="no">HM‑600i</span>SemiBold Italic<span class="aa" style="font-weight:600;font-style:italic">Aa</span></div>
+      <div><span class="no">HM‑700</span>Bold<span class="aa" style="font-weight:700">Aa</span></div>
+      <div><span class="no">HM‑700i</span>Bold Italic<span class="aa" style="font-weight:700;font-style:italic">Aa</span></div>
     </div>
-    <div class="styles" id="styles">
-      <div style="font-weight:200">Helix Mono ExtraLight</div>
-      <div style="font-weight:300">Helix Mono Light</div>
-      <div style="font-weight:400">Helix Mono Regular</div>
-      <div style="font-weight:500">Helix Mono Medium</div>
-      <div style="font-weight:600">Helix Mono SemiBold</div>
-      <div style="font-weight:700">Helix Mono Bold</div>
-    </div>
+    <p class="note">Check that all 12 parts are present before installation.</p>
   </div>
 </section>
 
 <section>
-  <div class="panel"><span class="mk"><i></i><i></i></span>
-    <p class="state" id="state">Query, Traverse, Embed, Index, Rank, Join, Filter, Stream, Store, Recall</p>
-    <span class="cap" style="margin-top:28px" id="stateCap">Helix Mono SemiBold, 84/86/−55</span>
-    <span class="cap"><button class="pill" id="stateNext">1/3</button></span>
+  <h2><span>3.0</span>Vertical metrics</h2>
+  <div class="body">
+    <figure>
+      <!-- Drawn in font units: 1000 per em, baseline at y=1020 -->
+      <svg viewBox="0 0 2600 1380" role="img" aria-label="The letters Hxg with ascender, cap height, x-height, baseline and descender marked">
+        <g stroke="#000" stroke-width="3">
+          <line x1="0" x2="1900" y1="0" y2="0"/>
+          <line x1="0" x2="1900" y1="290" y2="290"/>
+          <line x1="0" x2="1900" y1="470" y2="470" stroke-dasharray="12 10"/>
+          <line x1="0" x2="1900" y1="1020" y2="1020"/>
+          <line x1="0" x2="1900" y1="1320" y2="1320"/>
+          <line x1="600" x2="600" y1="0" y2="1320" stroke="#77756f" stroke-dasharray="4 10"/>
+          <line x1="1200" x2="1200" y1="0" y2="1320" stroke="#77756f" stroke-dasharray="4 10"/>
+        </g>
+        <text x="0" y="1020" font-family="Helix Mono" font-size="1000" font-weight="400" letter-spacing="0">Hxg</text>
+        <g font-family="Helix Mono" font-size="44">
+          <text x="1960" y="15">Ascender  1020</text>
+          <text x="1960" y="305">Cap height  730</text>
+          <text x="1960" y="485">x‑height  550</text>
+          <text x="1960" y="1035">Baseline  0</text>
+          <text x="1960" y="1335">Descender  −300</text>
+        </g>
+      </svg>
+      <figcaption>Fig. 1 · Helix Mono Regular, in font units. Each glyph occupies one 600‑unit cell.</figcaption>
+    </figure>
   </div>
 </section>
 
 <section>
-  <div class="panel"><span class="mk"><i></i><i></i></span>
-    <div class="cols">
-      <p>Helix Mono is a monospace typeface for code, data and the interfaces built around them. It starts from JetBrains Mono, an open source face drawn for long hours in editors, and changes it only where a change earns its place. The point of every V notch is rounded off by a small circle that touches both edges, so a, b, d, g, h, m, n, p, q and r keep the same soft joint in every weight. Heavier weights get rounder notches, because their strokes are thicker. The r ends square, with no lip, and its arm eases down toward its end in one curve. The u is a turned n.</p>
-      <p>The g's bottom hook is its bottom-right corner mirrored, stroke for stroke, and it stays clear of the bowl. The y's foot stops below its crotch. The M is exactly symmetric, and the inner edges of its uprights run straight up its grooves. The Q's tail stays clear of the counter. The ampersand and question mark are drawn lighter than the stems, as JetBrains Mono's own are, so they never look darker than the letters around them. The zero keeps its dot, sized so the Bold's never fills its counter. Each italic is its upright slanted nine degrees, so every edit carries over.</p>
-    </div>
-    <span class="cap" style="margin-top:32px">Helix Mono Regular, 15/20/−10</span>
+  <h2><span>4.0</span>Character set (excerpt)</h2>
+  <div class="body">
+    <figure>
+      <p class="chars">ABCDEFGHIJKLMNOPQRSTUVWXYZ<br>abcdefghijklmnopqrstuvwxyz<br>0123456789 {}[]()&lt;&gt;=!?&amp;@#$%*+-/\|~</p>
+      <figcaption>Fig. 2 · Helix Mono Regular.</figcaption>
+    </figure>
   </div>
 </section>
 
 <section>
-  <div class="panel"><span class="mk"><i></i><i></i></span>
-    <p class="abc">AaBbCcDdEeFfGgHh IiJjKkLlMmNnOoPpQq RrSsTtUuVvWwXxYyZz 0123456789</p>
-    <span class="cap" style="margin-top:28px">Helix Mono SemiBold, 118/118/−50</span>
+  <h2><span>5.0</span>Installation</h2>
+  <div class="body">
+    <ol>
+      <li><span>Download the package from <a href="https://github.com/HelixDB/helix-mono">github.com/HelixDB/helix-mono</a>.</span></li>
+      <li><span>For desktop use, open each file in <code>fonts/ttf</code> and select Install.</span></li>
+      <li><span>For the web, copy <code>fonts/woff2</code> into your project and declare it with <code>@font-face</code>.</span></li>
+      <li><span>Set your editor or terminal font to <code>Helix Mono</code>.</span></li>
+    </ol>
+<pre>@font-face {
+  font-family: "Helix Mono";
+  src: url(HelixMono-Regular.woff2) format("woff2");
+  font-weight: 400;
+}</pre>
   </div>
 </section>
 
 <section>
-  <div class="panel"><span class="mk"><i></i><i></i></span>
-    <div class="giant" id="giant" title="Click for the next">rgM</div>
-    <span class="cap" style="margin-top:24px" id="giantCap">Helix Mono Medium</span>
-    <span class="cap"><button class="pill" id="giantNext">1/4</button></span>
+  <h2><span>6.0</span>Licence</h2>
+  <div class="body">
+    <p style="max-width:620px">Helix Mono is free to use, modify and redistribute under the SIL Open Font License 1.1. The full text is supplied in <code>OFL.txt</code>. The font software is provided as is, without warranty of any kind.</p>
   </div>
 </section>
 
-<section>
-  <div class="head"><hr><h2>In use</h2><p>Helix Mono Regular and Italic, 18/28</p></div>
-  <div class="panel"><span class="mk"><i></i><i></i></span>
-<pre><span class="c">// Who supplies the parts in a customer's orders?</span>
-let suppliers = read_batch()
-    .n("Customer", "id", customer_id)
-    .out("PLACED")
-    .out("CONTAINS")
-    .in_("SUPPLIES")
-    .dedup()
-    .limit(25);
+<footer class="foot"><span>© HelixDB</span><a href="https://github.com/HelixDB/helix-mono">Download ↗</a></footer>
 
-<span class="c">// 0O 1lI 5S 8B {[()]} -&gt; =&gt; != == &lt;= &gt;= &amp;&amp; || @ ? !</span></pre>
-  </div>
-</section>
-
-<section>
-  <div class="head"><hr><h2>Try it</h2><p>Type anything</p></div>
-  <div class="panel"><span class="mk"><i></i><i></i></span>
-    <div class="tester">
-      <div class="row" role="group" aria-label="Weight">
-        <button data-w="200">ExtraLight</button><button data-w="300">Light</button><button data-w="400" aria-pressed="true">Regular</button><button data-w="500">Medium</button><button data-w="600">SemiBold</button><button data-w="700">Bold</button>
-        <button data-it aria-pressed="false">Italic</button>
-      </div>
-      <textarea id="type" rows="1" spellcheck="false" aria-label="Type to try Helix Mono">Sixty zippers were quickly picked from the woven jute bag</textarea>
-    </div>
-  </div>
-</section>
-
-<footer>
-  <div class="end">
-    <h2>Free.<br>Open.</h2>
-    <nav>
-      <a href="https://github.com/HelixDB/helix-mono/archive/refs/heads/main.zip">Download ↓</a>
-      <a href="https://github.com/HelixDB/helix-mono">GitHub ↗</a>
-      <a href="https://helix-db.com">HelixDB ↗</a>
-    </nav>
-  </div>
-  <div class="head"><hr></div>
-  <div class="foot">
-    <span>Helix Mono, SIL Open Font License 1.1</span>
-    <span>Based on JetBrains Mono</span>
-    <span>© 2026 HelixDB</span>
-  </div>
-</footer>
-
-<script>
-  document.querySelectorAll("[data-st]").forEach((b) => b.addEventListener("click", () => {
-    document.querySelectorAll("[data-st]").forEach((x) => x.setAttribute("aria-pressed", x === b));
-    document.getElementById("styles").style.fontStyle = b.dataset.st;
-  }));
-
-  const states = [
-    ["Query, Traverse, Embed, Index, Rank, Join, Filter, Stream, Store, Recall", 600, "normal", "SemiBold"],
-    ["Every notch rounded off. Every r squared. Nothing else moved.", 300, "normal", "Light"],
-    ["Made to be read for hours, in editors, terminals and dashboards.", 500, "italic", "Medium Italic"],
-  ];
-  let si = 0;
-  document.getElementById("stateNext").addEventListener("click", (e) => {
-    si = (si + 1) % states.length;
-    const [t, w, st, name] = states[si], el = document.getElementById("state");
-    el.textContent = t; el.style.fontWeight = w; el.style.fontStyle = st;
-    document.getElementById("stateCap").textContent = `Helix Mono ${name}, 84/86/−55`;
-    e.target.textContent = `${si + 1}/${states.length}`;
-  });
-
-  const sets = [["rgM", 500, "Medium"], ["Q&@", 300, "Light"], ["k0y", 700, "Bold"], ["{=>}", 200, "ExtraLight"]];
-  let gi = 0;
-  const nextGiant = () => {
-    gi = (gi + 1) % sets.length;
-    const [t, w, name] = sets[gi], el = document.getElementById("giant");
-    el.textContent = t; el.style.fontWeight = w;
-    document.getElementById("giantCap").textContent = `Helix Mono ${name}`;
-    document.getElementById("giantNext").textContent = `${gi + 1}/${sets.length}`;
-  };
-  document.getElementById("giantNext").addEventListener("click", nextGiant);
-  document.getElementById("giant").addEventListener("click", nextGiant);
-
-  const t = document.getElementById("type");
-  document.querySelectorAll("[data-w]").forEach((b) => b.addEventListener("click", () => {
-    document.querySelectorAll("[data-w]").forEach((x) => x.setAttribute("aria-pressed", x === b));
-    t.style.fontWeight = b.dataset.w;
-  }));
-  const it = document.querySelector("[data-it]");
-  it.addEventListener("click", () => {
-    const on = it.getAttribute("aria-pressed") !== "true";
-    it.setAttribute("aria-pressed", on);
-    t.style.fontStyle = on ? "italic" : "normal";
-  });
-</script>
+</div>
 </body>
 </html>
